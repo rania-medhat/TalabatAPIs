@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DomainLayer.Models
 {
-    internal class ProductType
+    public class ProductType
     {
+        [Key]
+        public int Id { get; set; }   // المفتاح الأساسي
+        public string Name { get; set; }
     }
 }

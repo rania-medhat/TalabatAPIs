@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models
 {
-    internal class BaseEntity
+    public class BaseEntity<IKey>
     {
+        public IKey Id { get; set; }//PK
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Models
+namespace DomainLayer.Contracts
 {
-    public class ProductBrand:BaseEntity<int>
+    public interface IDataSeeding
     {
-        public string Name { get; set; } = null;
+        void DataSeed();
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Models
+namespace PresistenceLayer
 {
-    public class ProductBrand:BaseEntity<int>
+    public class ProjectReference
     {
-        public string Name { get; set; } = null;
     }
 }
