@@ -3,12 +3,15 @@ using DomainLayer.Contracts;
 using Microsoft.EntityFrameworkCore;
 using PresistenceLayer;
 using PresistenceLayer.Data;
+using PresistenceLayer.Repositories;
+using ServiceAbstractionLayer;
+using ServiceLayer;
 
 namespace TalabatDemo
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,10 @@ namespace TalabatDemo
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddScoped<IDataSeeding,DataSeeding>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddAutoMapper((x) => { }, typeof(ServiceLayerAssemplyReference).Assembly);
+            //builder.Services.AddAutoMapper(typeof(ServiceLayerAssemplyReference).Assembly);
+            builder.Services.AddScoped<IServiceManager, ServiceManager>();
             #endregion
 
             var app = builder.Build();
@@ -32,7 +39,7 @@ namespace TalabatDemo
             //manual injection
             using var scope=app.Services.CreateScope();
             var seedObject=scope.ServiceProvider.GetService<IDataSeeding>();
-            seedObject.DataSeed();
+            await seedObject.DataSeedAsync();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -43,7 +50,7 @@ namespace TalabatDemo
 
             app.UseHttpsRedirection();
 
-
+            app.UseStaticFiles();
             app.MapControllers();
 
             app.Run();

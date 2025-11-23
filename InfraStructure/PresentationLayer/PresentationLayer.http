@@ -1,0 +1,14 @@
+﻿@PresentationLayer_HostAddress =  http://localhost:5028
+
+@id=1
+GET {{PresentationLayer_HostAddress}}/api/Products/{{id}}
+
+### get product by id
+
+GET {{PresentationLayer_HostAddress}}/api/Products/types
+
+### get all types
+
+GET {{PresentationLayer_HostAddress}}/api/Products/brands
+
+### get all brands

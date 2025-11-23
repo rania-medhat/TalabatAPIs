@@ -19,4 +19,8 @@
     <ProjectReference Include="..\InfraStructure\PresistenceLayer\PresistenceLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
+
 </Project>

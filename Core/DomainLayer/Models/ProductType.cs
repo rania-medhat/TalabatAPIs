@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models
 {
-    public class ProductType
+    public class ProductType :BaseEntity<int>
     {
         [Key]
         public int Id { get; set; }   // المفتاح الأساسي
