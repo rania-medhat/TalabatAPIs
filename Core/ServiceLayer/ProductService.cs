@@ -24,6 +24,8 @@ namespace ServiceLayer
 
         public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
         {
+            //create object from specification
+
             var products =await _unitOfWork.GetRepository<Product, int>().GetAllAsync();
             var productsDTO = _mapper.Map<IEnumerable<ProductDTO>>(products);
             return productsDTO;

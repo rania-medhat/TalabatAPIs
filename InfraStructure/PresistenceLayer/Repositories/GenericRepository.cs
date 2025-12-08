@@ -29,5 +29,23 @@ namespace PresistenceLayer.Repositories
 
         public void Update(TEntity entity)
         =>  _dbContext.Set<TEntity>().Update(entity);
+
+        #region with specifications
+
+        public Task<IEnumerable<TEntity>> GetAllAsync(ISpesifications<TEntity, TKey> spesifications)
+        {
+           var baseQuery= _dbContext.Set<TEntity>();
+
+            if (spesifications.Criteria is not null)
+            {
+                var criteria = spesifications.Criteria;
+                baseQuery = baseQuery.Where(criteria);
+            }
+        }
+        public Task<TEntity> GetByIdAsync(ISpesifications<TEntity, TKey> spesifications)
+        {
+
+        }
+        #endregion
     }
 }
