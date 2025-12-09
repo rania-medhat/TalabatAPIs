@@ -10,7 +10,7 @@ namespace ServiceAbstractionLayer
     public interface IProductService //abstraction for service layer
     {
         //get all products
-        Task<IEnumerable<ProductDTO>> GetAllProductsAsync();
+        Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int? brandId, int? typeId);
         //get product by id
         Task<ProductDTO> GetProductByIdAsync(int id);
         //get all types

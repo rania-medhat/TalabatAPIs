@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceAbstractionLayer;
 using TalabatDemo.Models;
 
 namespace TalabatDemo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase //baseurl/api/Product
+    public class ProductController: ControllerBase //baseurl/api/Product
     {
         [HttpGet("{id}")]//Get : BaseURL/api/Product?id=6
         public ActionResult<Product> Get(int id) 
