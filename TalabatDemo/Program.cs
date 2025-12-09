@@ -1,4 +1,5 @@
 
+using Azure.Core;
 using DomainLayer.Contracts;
 using Microsoft.EntityFrameworkCore;
 using PresistenceLayer;
@@ -42,6 +43,15 @@ namespace TalabatDemo
             await seedObject.DataSeedAsync();
 
             // Configure the HTTP request pipeline.
+            app.Use( async (RequestContent,  NextMiddleWare ) =>
+            {
+                Console.WriteLine("request under processing");
+                await NextMiddleWare.Invoke();
+                Console.WriteLine("waiting response");
+
+            });
+
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
