@@ -32,18 +32,30 @@ namespace PresistenceLayer.Repositories
 
         #region with specifications
 
-        public Task<IEnumerable<TEntity>> GetAllAsync(ISpesifications<TEntity, TKey> spesifications)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(ISpesifications<TEntity, TKey> spesifications)
         {
-           var baseQuery= _dbContext.Set<TEntity>();
+           //var baseQuery= _dbContext.Set<TEntity>();
 
-            if (spesifications.Criteria is not null)
-            {
-                var criteria = spesifications.Criteria;
-                baseQuery = baseQuery.Where(criteria);
-            }
+           // if (spesifications.Criteria is not null)
+           // {
+           //     var criteria = spesifications.Criteria;
+           //     baseQuery = baseQuery.Where(criteria);
+           // }
+
+            return await SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(), spesifications)
+                .ToListAsync();
         }
-        public Task<TEntity> GetByIdAsync(ISpesifications<TEntity, TKey> spesifications)
+        public async Task<TEntity> GetByIdAsync(ISpesifications<TEntity, TKey> spesifications)
         {
+            //var baseQuery = _dbContext.Set<TEntity>();
+
+            //if (spesifications.Criteria is not null)
+            //{
+            //    var criteria = spesifications.Criteria;
+            //    baseQuery = baseQuery.Where(criteria);
+            //}
+            return await SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(), spesifications)
+                .FirstOrDefaultAsync();
 
         }
         #endregion
